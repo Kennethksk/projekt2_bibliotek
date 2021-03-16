@@ -2,4 +2,10 @@ extends layout
 
 block content
   h1= title
-  p Welcome to #{title}
+  p Add a new book to the library:
+  form(action="post")
+    input(type="text" name="title" placeholder="Book title" required)
+    input(type="text" name="authors" placeholder="Author's name" required)
+    input(type="text" name="copyright" placeholder="Copyright" required)
+    input(type="number" name="edition" placeholder="Book edition" required)
+    input(type="text" name="published" placeholder="" required)
