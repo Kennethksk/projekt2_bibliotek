@@ -2,13 +2,14 @@ var express = require('express');
 var router = express.Router();
 const mongoose = require('mongoose');
 const book = require('../models/books');
+//const getBooks = require('../models/handleBooks');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Library Front Page' });
 });
 
-router.get('/viewbooks.pug', async function(req, res, next) {
+router.get('/viewbooks', async function(req, res, next) {
   const dbname = "library";         // databasen hedder library
   const findDB = `mongodb://localhost:27017/${dbname}`;
   const conparam = { useNewUrlParser: true, useUnifiedTopology: true };
@@ -24,10 +25,10 @@ router.get('/viewbooks.pug', async function(req, res, next) {
   });
 });
 
-router.get('/addbooks.pug', function(req, res, next) {
+router.get('/addbooks', function(req, res, next) {
   res.render('addbooks', { title: 'Add books to library' });
 });
-// router.get('/persons.pug', function(req, res, next) {
+// router.get('/persons', function(req, res, next) {
 //   res.render('persons', { title: 'User registration page' });
 // });
 
