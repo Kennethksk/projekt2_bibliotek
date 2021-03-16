@@ -1,5 +1,13 @@
 extends layout
 
+
 block content
   h1= title
   p Welcome to #{title}
+  table
+    each book in books
+        p #{book.title}
+        p #{book.authors[0]}
+        p #{book.copyright}
+        p #{book.edition}
+        p #{book.published}

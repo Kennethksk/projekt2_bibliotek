@@ -2,11 +2,7 @@ const mongoose = require('mongoose');
 
 const booksSchema = mongoose.Schema({
     title: String,
-    authors: [{
-        firstname: String,
-        middlename: String,
-        lastname: String,
-    }],
+    authors: [],
     copyright: String,
     edition: Number,
     published: {
@@ -16,6 +12,4 @@ const booksSchema = mongoose.Schema({
     }
 })
 
-const book = mongoose.model("Book", booksSchema, 'book');
-
-exports.book = book;
+module.exports = mongoose.model("Book", booksSchema, 'books');    // 1. parameter er modul navn, 2. parameter er schema og 3. parameter er kollektionsnavn(books collection fra databasen)

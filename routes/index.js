@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 const mongoose = require('mongoose');
-const modelBooks = require('../models/books');
+const book = require('../models/books');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -9,19 +9,18 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/viewbooks.pug', async function(req, res, next) {
-  let result = await modelBooks.books;
-  res.render('viewbooks', { 
-    title: 'View books in library',
-    books: result 
-  });
-  const dbname = "books";
+  const dbname = "library";         // databasen hedder library
   const findDB = `mongodb://localhost:27017/${dbname}`;
   const conparam = { useNewUrlParser: true, useUnifiedTopology: true };
   mongoose.connect(findDB, conparam);
   const db = mongoose.connection;
   db.once("open", function() {
     console.log("Connected to server by mongoose");
-    console.log(result);
+  });
+  let result = await book.find({}, null, {}); // her læses bøger
+  res.render('viewbooks', {
+    title: 'View books in library',
+    books: result
   });
 });
 
