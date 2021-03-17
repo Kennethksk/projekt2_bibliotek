@@ -3,9 +3,14 @@ extends layout
 block content
   h1= title
   p Add a new book to the library:
-  form(action="post")
+  form(action="/addbooks" method="post")
     input(type="text" name="title" placeholder="Book title" required)
-    input(type="text" name="authors" placeholder="Author's name" required)
+    input(type="text" name="authorFname" placeholder="Author's first name" required)
+    input(type="text" name="authorMname" placeholder="Author's middle name")
+    input(type="text" name="authorLname" placeholder="Author's last name" required)
     input(type="text" name="copyright" placeholder="Copyright" required)
     input(type="number" name="edition" placeholder="Book edition" required)
-    input(type="text" name="published" placeholder="" required)
+    input(type="text" name="publisher" placeholder="Publisher" required)
+    input(type="text" name="place" placeholder="Place" required)
+    input(type="text" name="year" placeholder="Year published" required)
+    input(type="submit" value="Go")
