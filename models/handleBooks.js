@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
-const book = require('../models/books');
+const Book = require('../models/books');
+const Bookcopy = require('../models/bookcopy');
 
 exports.getBooks = async function(query, sort) {
     const dbname = "library";         // databasen hedder library
@@ -10,7 +11,7 @@ exports.getBooks = async function(query, sort) {
     db.once("open", function() {
     console.log("Connected to server by mongoose");
     });
-    let result = await book.find(query, null, sort);
+    let result = await Book.find(query, null, sort);
     return result;
 };
 
