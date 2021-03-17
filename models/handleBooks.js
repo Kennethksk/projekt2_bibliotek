@@ -23,5 +23,46 @@ exports.putBooks = async function(req) {
     db.once("open", function() {
     console.log("Connected to server by mongoose");
     });
-    
+
+    let author = {
+        firstname: req.body.authorFname,
+        middlename: req.body.authorMname,
+        lastname: req.body.authorLname
+    };
+
+    let published = {
+        publisher: req.body.publisher,
+        place: req.body.place,
+        year: req.body.year
+    };
+
+    let book = new Book({
+        title: req.body.title,
+        authors: [author],
+        copyright: req.body.copyright,
+        edition: req.body.edition,
+        published: published
+    });
+
+    Book.create(book, function(error, savedDocument) {
+        if (error)
+            console.log(error);
+        let i = req.body.copies;
+        let arr = [];
+        while (i > 0) {
+            let bookcopy = new Bookcopy({
+                bookid: savedDocument._id
+            });
+            arr.push(bookcopy);
+            --i;
+        }
+        console.log(arr.length);
+
+        Bookcopy.create(arr, function(err, cops) {
+            if (err)
+                console.log(err);
+            console.log(cops);
+            db.close();
+        });
+    });
 } 
