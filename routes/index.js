@@ -3,6 +3,8 @@ var router = express.Router();
 const mongoose = require('mongoose');
 const book = require('../models/books');
 const books = require('../models/handleBooks');
+const person = require('../models/persons');
+const persons = require('../models/handlePersons');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -31,8 +33,26 @@ router.post('/addbooks', async function(req, res, next) {
   });
 });
 
-// router.get('/persons', function(req, res, next) {
-//   res.render('persons', { title: 'User registration page' });
-// });
+router.get('/persons', async function(req, res, next) {
+  let result = await persons.getPersons({}, {}); // her personer
+  res.render('persons', { 
+    title: 'User database page',
+    persons: result
+   });
+});
+
+router.get('/addpersons', async function(req, res, next) {
+  res.render('addpersons', { 
+    title: 'Register loaners to databse',
+  });
+});
+
+router.post('/addpersons', async function(req, res, next) {
+  let result = await persons.putPersons({}, {}); // her læses personer
+  res.render('persons', { 
+    title: 'User database page',
+    persons: result
+  });
+});
 
 module.exports = router;
