@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Person = require('../models/persons');
+const bcrypt = require('bcrypt');
 
 exports.getPersons = async function(query, sort) {
     const dbname = "library";         // databasen hedder library
@@ -23,25 +24,24 @@ exports.putPersons = async function(req) {
     db.once("open", function() {
     console.log("Connected to server by mongoose");
     });
-
-    let person = new Person({
-        cpr: req.body.cpr,
-        currentpenalties: req.body.currentpenalties,
-        email: req.body.email,
-        loanerFname: req.body.loanerFname,
-        loanerLname: req.body.loanerLname,
-        loanerMname: req.body.loanerMname,
-        newsletter: req.body.newsletter,
-        password: req.body.password
-    });
-
-    Person.create(person, function(error, savedDocument) {
-        if (error) 
-            console.log(error);
-        console.log(savedDocument);
-
-        db.close(); 
-
-        
+    
+    let newsletter = req.body.newsletter=='on' ? true : false;
+    bcrypt.hash(req.body.password, 10, function(error, hash) {
+        let person = new Person({
+            cpr: req.body.cpr,
+            currentpenalties: 0,
+            email: req.body.email,
+            firstname: req.body.loanerFname,
+            lastname: req.body.loanerLname,
+            middlename: req.body.loanerMname,
+            newsletter: newsletter,
+            password: hash
+        });
+        Person.create(person, function(error, savedDocument) {
+            if (error) 
+                console.log(error);
+            console.log(savedDocument);
+            db.close(); 
+        });
     });
 } 

@@ -48,10 +48,9 @@ router.get('/addpersons', async function(req, res, next) {
 });
 
 router.post('/addpersons', async function(req, res, next) {
-  let result = await persons.putPersons({}, {}); // her læses personer
-  res.render('persons', { 
+  let result = await persons.putPersons(req);
+  res.render('index', { 
     title: 'User database page',
-    persons: result
   });
 });
 
