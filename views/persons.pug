@@ -4,12 +4,32 @@ block content
   h1= title
   p Welcome to #{title}
   table
-    each person in persons
-      p CPR: #{person.cpr}
-      p Current penalties: #{person.currentpenalties}
-      p Email: #{person.email}
-      p Firstname: #{person.firstname}
-      p Middlename: #{person.middlename}
-      p Lastname: #{person.lastname}
-      p Newsletter: #{person.newsletter}
-      p Password: #{person.password}
+    tr 
+      th Firstname 
+      th Middlename 
+      th Lastname 
+      th Email 
+      th Newsletter 
+      th Current Penalties 
+      th CPR number 
+      th Password
+
+    each person in persons 
+      tr 
+        td #{person.firstname}
+        td #{person.middlename}
+        td #{person.lastname}
+        td #{person.email}
+        td #{person.newsletter}
+        td #{person.currentpenalties}
+        td #{person.cpr}
+        td #{person.password}
+    //- each person in persons
+    //-   p CPR: #{person.cpr}
+    //-   p Current penalties: #{person.currentpenalties}
+    //-   p Email: #{person.email}
+    //-   p Firstname: #{person.firstname}
+    //-   p Middlename: #{person.middlename}
+    //-   p Lastname: #{person.lastname}
+    //-   p Newsletter: #{person.newsletter}
+    //-   p Password: #{person.password}

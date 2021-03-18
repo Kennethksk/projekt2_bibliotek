@@ -3,8 +3,41 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
+ul {
+  display: flex;
+  flex-direction: row;
+  padding: 0;
+}
+
+li {
+  list-style-type: none;
+  margin: 0 1vh;
+}
+
 a {
   color: #00B7FF;
+  text-decoration: none;
+  font-size: 1vw;
+}
+th {
+  border: 1px solid #ddd;
+  padding: 1vh;
+  text-align: left;
+  background-color: cornflowerblue;
+}
+
+td {
+  text-align: left;
+  border: 1px solid #ddd;
+  padding: 1vh;
+}
+
+tr:nth-child(even){
+  background-color: lightgray;
+}
+
+tr:hover {
+  background-color: darkgreen;
 }
 
 form {

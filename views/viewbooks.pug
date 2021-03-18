@@ -5,12 +5,33 @@ block content
   h1= title
   p Welcome to #{title}
   table
+    tr 
+      th Title
+      th Authors
+      th Copyright
+      th Edition
+      th Publisher
+      th Published year
+      th Published place
+
     each book in books
-        p Title: #{book.title}
-        each author in book.authors
-          p Author(s): #{author.firstname} #{author.middlename} #{author.lastname}
-        p Copyright: #{book.copyright}
-        p Edition: #{book.edition}
-        p Publisher: #{book.published.publisher}
-        p Published year: #{book.published.year}
-        p Published year: #{book.published.place}
+      each author in book.authors
+        tr
+          td #{book.title}
+          td #{author.firstname} #{author.middlename} #{author.lastname}
+          td #{book.copyright}
+          td #{book.edition}
+          td #{book.published.publisher}
+          td #{book.published.year}
+          td #{book.published.place}
+
+      
+    //- each book in books
+    //-     p Title: #{book.title}
+    //-     each author in book.authors
+    //-       p Author(s): #{author.firstname} #{author.middlename} #{author.lastname}
+    //-     p Copyright: #{book.copyright}
+    //-     p Edition: #{book.edition}
+    //-     p Publisher: #{book.published.publisher}
+    //-     p Published year: #{book.published.year}
+    //-     p Published year: #{book.published.place}
