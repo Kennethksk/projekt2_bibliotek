@@ -2,7 +2,7 @@ extends layout
 
 block content
   h1= title
-  p Register a new loaner to the library database:
+  h2 Register a new loaner to the library database:
   form(action="/addpersons" method="post")
     input(type="number" name="cpr" placeholder="CPR number" required)
     input(type="number" name="currentpenalties" placeholder="Current penalty" required)
